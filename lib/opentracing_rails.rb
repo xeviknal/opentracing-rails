@@ -4,4 +4,6 @@ class OpentracingRails
   end
 
   require 'rack/tracer'
+  require 'faraday'
+  require 'faraday/tracer'
 end
