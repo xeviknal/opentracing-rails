@@ -13,4 +13,7 @@ Gem::Specification.new do |s|
     s.files       = Dir["lib/**/*"]
     s.homepage    = 'http://opentracing.io'
     s.license     = 'Apache-2.0'
+
+    # Dependencies
+    s.add_dependency('rack-tracer', '~> 0.3.0')
 end
