@@ -6,4 +6,5 @@ class OpentracingRails
   require 'rack/tracer'
   require 'faraday'
   require 'faraday/tracer'
+  require 'opentracing_rails/action_controller/base'
 end
