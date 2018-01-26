@@ -91,3 +91,15 @@ span = @tracer.start_span('interesting_transaction,
 
 span.finish
 ```
+
+### Tracking ActiveRecord
+
+Opentracing_ruby allows to track all ActiveRecord transaction performed within a Rails application.
+The only thing you need to do is to add the following line under all the controllers you want to record its traces:
+
+```ruby
+class ApplicationController < ActionController::Base
+  include OpentracingRails::Instrumenters::ActiveRecord
+end
+
+```
