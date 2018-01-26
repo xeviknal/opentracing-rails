@@ -103,3 +103,10 @@ class ApplicationController < ActionController::Base
 end
 
 ```
+
+## Draft tasks to do in future
+
+[ ] Add Sidekiq support
+[ ] Avoid changing config.ru for adding `use Rack::Tracer`
+[ ] Set railsy names to traces (for better understanding on Opentracing backend)
+[ ] Perhaps add the ActiveRecord tracer within a middleware? this way it could get the whole app traffic.
