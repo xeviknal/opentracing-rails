@@ -10,6 +10,10 @@ module OpenTracing
   module Rails
     class Engine < ::Rails::Engine
       isolate_namespace OpenTracing::Rails
+
+      initializer "opentracing.rails.add_rack_tracer" do |app|
+        app.config.middleware.insert_before(Rack::Sendfile, Rack::Tracer)
+      end
     end
   end
 end

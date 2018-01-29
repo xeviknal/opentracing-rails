@@ -43,16 +43,6 @@ OpenTracing.global_tracer = Zipkin::Tracer.build(
 
 ```
 
-Last but not least, start tracing whole incoming requests.
-Add the following line into `config.ru` file as follows:
-
-```ruby
-# config.ru
-
-use Rack::Tracer
-run Rails.application
-```
-
 ## Environment preparation
 
 For running a Jaeger instance, you can use the official [All-in-one docker image](http://jaeger.readthedocs.io/en/latest/getting_started/#all-in-one-docker-image)
