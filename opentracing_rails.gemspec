@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
     s.add_dependency('rack-tracer', '~> 0.3.0')
     s.add_dependency('faraday', '~> 0.14.0')
     s.add_dependency('faraday-tracer', '~> 0.2.0')
-    s.add_development_dependency('rails', '~> 3.2')
+    s.add_development_dependency('rails', '> 3')
 end
