@@ -11,10 +11,13 @@ gem 'opentracing_rails'
 ```
 
 This gem is based on [Opentracing](https://github.com/opentracing/opentracing-ruby/) standard but is not bound to any implementation of it.
-Therefore, you need to choose which implementation want to use. For instance, the [CNCF](https://www.cncf.io) project
-[Jaeger](https://github.com/jaegertracing/jaeger) and its ruby implementation [jaeger-client-ruby](https://github.com/salemove/jaeger-client-ruby).
+Therefore, you need to choose which implementation want to use.
 
 Once you have chosen the backend, add the following lines into an initializer specifying it:
+
+### Jaeger
+
+For instance, the [CNCF](https://www.cncf.io) project [Jaeger](https://github.com/jaegertracing/jaeger) and its ruby implementation [jaeger-client-ruby](https://github.com/salemove/jaeger-client-ruby).
 
 ```ruby
 # config/initializers/opentracing.rb
@@ -25,6 +28,19 @@ OpenTracing.global_tracer = Jaeger::Client.build(
   service_name: Rails.application.class.parent_name,
   host: 'localhost',
   port: 6831)
+```
+
+### Zipkin
+An alternative to Jaeger, there is [Zipkin](https://zipkin.io/) which has its ruby implementation [zipking-ruby-opentracing](https://github.com/salemove/zipkin-ruby-opentracing).
+
+```ruby
+# config/initializers/opentracing.rb
+
+require 'zipkin/tracer'
+OpenTracing.global_tracer = Zipkin::Tracer.build(
+  url: 'http://localhost:9411',
+  service_name: Rails.application.class.parent_name)
+
 ```
 
 Last but not least, start tracing whole incoming requests.
