@@ -19,5 +19,15 @@ module OpenTracing
         ActionController::Base.send(:include, OpenTracing::Rails::Instrumenters::ActiveRecord)
       end
     end
+
+    def self.configure
+      yield self
+    end
+
+    mattr_writer :skip_schema_queries
+
+    def self.skip_schema_queries
+      @skip_schema_queries ||= true
+    end
   end
 end

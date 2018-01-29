@@ -54,12 +54,11 @@ docker run -d -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 -p5775:5775/udp -p6831:6831/udp
   -p5778:5778 -p16686:16686 -p14268:14268 -p9411:9411 jaegertracing/all-in-one:latest
 ```
 
-
 ## Usage
 
 ### current_span
 
-Opentracing_ruby defines a `current_span` method which tells the whole trace information collected until the moment.
+OpenTracing::Rails defines a `current_span` method which tells the whole trace information collected until the moment.
 TODO: more info, if needed. maybe classname?
 
 ### Tracking http communications
@@ -98,17 +97,12 @@ span = @tracer.start_span('interesting_transaction,
 span.finish
 ```
 
-### Tracking ActiveRecord
+### Tracing ActiveRecord
 
-Opentracing_ruby allows to track all ActiveRecord transaction performed within a Rails application.
-The only thing you need to do is to add the following line under all the controllers you want to record its traces:
+OpenTracing::Rails traces all ActiveRecord transactions by default, without any
+configuration. There are some options that can be set, though:
 
-```ruby
-class ApplicationController < ActionController::Base
-  include OpentracingRails::Instrumenters::ActiveRecord
-end
-
-```
+* `skip_schema_queries`: Avoid adding to the trace internal AR queries for schema, to not pollute the trace. Default: **true**.
 
 ## Draft tasks to do in future
 
